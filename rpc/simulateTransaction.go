@@ -49,7 +49,7 @@ type SimulateTransactionResult struct {
 func (cl *Client) SimulateTransaction(
 	ctx context.Context,
 	transaction *solana.Transaction,
-) (out *SimulateTransactionResponse, err error) {
+) (out SimulateTransactionResponse, err error) {
 	return cl.SimulateTransactionWithOpts(
 		ctx,
 		transaction,
@@ -92,7 +92,7 @@ func (cl *Client) SimulateTransactionWithOpts(
 	ctx context.Context,
 	transaction *solana.Transaction,
 	opts *SimulateTransactionOpts,
-) (out *SimulateTransactionResponse, err error) {
+) (out SimulateTransactionResponse, err error) {
 	txData, err := transaction.MarshalBinary()
 	if err != nil {
 		return nil, fmt.Errorf("send transaction: encode transaction: %w", err)
